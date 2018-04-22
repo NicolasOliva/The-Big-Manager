@@ -10,3 +10,10 @@
   var funcion = setInterval(mostrar,2500);
 
 }())
+
+
+function boton() {
+
+  alert("The Big Manager");
+
+}
