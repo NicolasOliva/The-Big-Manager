@@ -11,9 +11,58 @@
 
 }())
 
-
 function boton() {
 
   alert("The Big Manager");
 
 }
+
+function Request(){
+
+    var xhr = new XMLHttpRequest();
+
+    xhr.open("GET","http://api.icndb.com/jokes/random",true);
+    xhr.send();
+
+    xhr.onload = function(){
+
+        if(xhr.readyState == 4 && xhr.status == 200){
+            document.getElementById("info").innerHTML = xhr.responseText;
+        }
+
+    }
+
+}
+
+var promesa = new Promise(function(resolve,reject){
+
+  var xhr = new XMLHttpRequest();
+
+  xhr.open("GET","http://api.icndb.com/jokes/random",true);
+  xhr.send();
+
+  xhr.onload = function(){
+
+      if(xhr.readyState == 4 && xhr.status == 200){
+          resolve(JSON.parse(xhr.responseText));
+      }else{
+        reject("Error")
+      }
+
+  }
+
+});
+
+function Promesa (){
+
+  promesa
+    .then(function(response){
+      var informacion = response.value;
+      document.getElementById("info").innerHTML = informacion;
+    })
+    .catch(function(error){
+      console.log('Error: ', error);
+    })
+
+}
+g
