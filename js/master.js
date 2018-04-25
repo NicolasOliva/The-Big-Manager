@@ -17,6 +17,7 @@ function boton() {
 
 }
 
+/*
 function Request(){
 
     var xhr = new XMLHttpRequest();
@@ -33,36 +34,46 @@ function Request(){
     }
 
 }
+*/
 
-var promesa = new Promise(function(resolve,reject){
 
-  var xhr = new XMLHttpRequest();
+var xhr = new XMLHttpRequest();
 
-  xhr.open("GET","http://api.icndb.com/jokes/random",true);
-  xhr.send();
+function Request(){
 
-  xhr.onload = function(){
+    var promesa = new Promise(function(resolve,reject){
 
-      if(xhr.readyState == 4 && xhr.status == 200){
-          resolve(JSON.parse(xhr.responseText));
-      }else{
-        reject("Error")
-      }
+    xhr.open("GET","http://api.icndb.com/jokes/random",true);
+    xhr.send();
 
-  }
+    xhr.onload = function(){
 
-});
+        if(xhr.readyState == 4 && xhr.status == 200){
+            resolve(JSON.parse(xhr.responseText));
+        }else{
+          reject("Error")
+        }
 
-function Promesa (){
+    }
+
+  });
+
+  return promesa;
+
+} 
+
+function Mostrar(){
+
+  var promesa = new Request();
 
   promesa
     .then(function(response){
       var informacion = response.value;
       document.getElementById("info").innerHTML = informacion;
+      console.log(informacion);
     })
     .catch(function(error){
       console.log('Error: ', error);
     })
 
 }
-g
