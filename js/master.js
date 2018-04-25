@@ -78,4 +78,4 @@ function Mostrar(metodo,url,id){
 
 }
 
-document.getElementById("boton").onclick = new Mostrar('GET','http://api.icndb.com/jokes/random','info'); 
+document.getElementById("boton").onclick = new Mostrar('GET','http://api.icndb.com/jokes/random','info');
