@@ -39,11 +39,11 @@ function Request(){
 
 var xhr = new XMLHttpRequest();
 
-function Request(){
+function Request(meotodo,url){
 
     var promesa = new Promise(function(resolve,reject){
 
-    xhr.open("GET","http://api.icndb.com/jokes/random",true);
+    xhr.open(metodo,url,true);
     xhr.send();
 
     xhr.onload = function(){
@@ -60,16 +60,16 @@ function Request(){
 
   return promesa;
 
-} 
+}
 
-function Mostrar(){
+function Mostrar(metodo,url,id){
 
-  var promesa = new Request();
+  var promesa = new Request(metodo,url);
 
   promesa
     .then(function(response){
       var informacion = response.value;
-      document.getElementById("info").innerHTML = informacion;
+      document.getElementById(id).innerHTML = informacion;
       console.log(informacion);
     })
     .catch(function(error){
@@ -77,3 +77,5 @@ function Mostrar(){
     })
 
 }
+
+document.getElementById("boton").onclick = new Mostrar('GET','http://api.icndb.com/jokes/random','info'); 
